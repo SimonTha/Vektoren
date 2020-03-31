@@ -2,8 +2,8 @@ var express = require('express');
 var socket = require('socket.io');
 
 var app = express();
-var server = app.listen('vektoren.netlify.com:8886', function(){
-  console.log("listening to request to port 8887");
+var server = app.listen('https://vektoren.netlify.com:8886/projectgay/', function(){
+  console.log("listening to request to port 8886");
 });
 app.use(express.static('public'));
 
