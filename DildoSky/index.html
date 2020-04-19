@@ -7,10 +7,12 @@
 			let backgroundSky;
 			let dildo;
 			let rotation = 0;
+			let backgroundSong;
 			
 			function preload(){
 				backgroundSky = loadImage("rsc/images/backgroundSky.jpg");
 				dildo = loadImage("rsc/images/dildo.png");
+				backgroundSong = loadSound("rsc/Sounds/OkiDokiBoomer.mp3");
 			}
 			
 			function setup(){
@@ -19,6 +21,9 @@
 			}
 			
 			function draw(){
+				if(!backgroundSong.isPlaying()){
+					backgroundSong.play();
+				}
 				image(backgroundSky, 0, 0, windowWidth, windowHeight);
 				translate(width/2 , height/2);
 				rotate(rotation);
