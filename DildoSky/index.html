@@ -4,8 +4,12 @@
 	<head>
 		<script>
 			let backgroundSky;
+			let dildo;
+			let rotate = 0;
+			
 			function preload(){
-				backgroundSky = loadImage("rsc/images/backgroundSky.jpg")
+				backgroundSky = loadImage("rsc/images/backgroundSky.jpg");
+				dildo = loadImage("rsc/images/dildo.jpg");
 			}
 			
 			function setup(){
@@ -15,6 +19,10 @@
 			
 			function draw(){
 				image(backgroundSky, 0, 0, windowWidth, windowHeight);
+				rotate(rotate);
+				image(dildo, width/2 -205, height/2 - 298, 510, 586);
+				rotate(-rotate);
+				rotate += 10;
 			}
 		</script>
 	</head>
