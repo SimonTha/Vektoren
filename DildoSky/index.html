@@ -1,0 +1,21 @@
+<!Doctype html>
+<html>
+	<script src='https://cdn.jsdelivr.net/npm/p5'></script>
+	<head>
+		<script>
+			let backgroundSky;
+			function preLoad(){
+				backgroundSky = loadImage("/rsc/images/BackgoundSky.jpg")
+			}
+			
+			function setup(){
+				let canvas = createCanvas(windowWidth, windowHeight);
+				canvas.position(0, 0);
+			}
+			
+			function draw(){
+				image(backgroundSky, 0, 0, width, height);
+			}
+		</script>
+	</head>
+</html>
