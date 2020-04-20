@@ -10,7 +10,7 @@
 	let underwater = false;
 	
 	function preload(){
-		motoSong = loadSong("rsc/sounds/MotoMotoSong.mp3");
+		motoSong = loadSound("rsc/sounds/MotoMotoSong.mp3");
 		motoLeft = loadImage("rsc/images/MotoMotoLeft.png");
 		motoRight = loadImage("rsc/images/MotoMotoRight.png");
 		motoFront = loadImage("rsc/images/MotoMotoFront.png");
@@ -42,6 +42,9 @@
 	}
 	
 	function draw(){
+	if(!motoSong.isPlaying()){
+		motoSong.play();
+	}
 		background(0);
 		noStroke();
 		
@@ -114,6 +117,10 @@
 		
 		}
 		
+	}
+	
+	function keyPressed(){
+		motoSong.play();
 	}
 </script>
 </html>
