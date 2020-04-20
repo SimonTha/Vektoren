@@ -1,0 +1,119 @@
+<!Doctype html>
+<html>
+<script src='https://cdn.jsdelivr.net/npm/p5'></script>
+<script>
+	let motoLeft, motoRight, motoFront, motoWater;
+	let playerX, playerY, playerSpeed, playerHeight, playerWidth1, playerWidth2;
+	let ground1X, ground2X, ground1Y, ground2Y, groundArray = [];
+	let jumpForce, jumpHeight, newgrav, gravitation, acceleration;
+	let underwater = false;
+	
+	function preload(){
+		motoLeft = loadImage("rsc/images/MotoMotoLeft.png");
+		motoRight = loadImage("rsc/images/MotoMotoRight.png");
+		motoFront = loadImage("rsc/images/MotoMotoFront.png");
+		motoWater = loadImage("rsc/images/MotoMotoUnderwater.png")
+	}
+	
+	function setup(){
+		let canvas = createCanvas(windowWidth, windowHeight);
+		canvas.position(0, 0);
+		
+		playerX = 100;
+		playerY = 200;
+		playerSpeed = 5;
+		playerHeight = 200;
+		playerWidth1 = 100;
+		playerWidth2 = 150;
+		
+		ground1X = 0;
+		ground2X = width;
+		ground1Y = height - 300;
+		ground2Y = 300;
+		
+		newgrav = 0;
+		gravitation = 1;
+		acceleration = 0;
+		jumpForce = 0;
+		jumpHeight = 20;
+		groundArray[0] = [0, height-300, width - 300, 300, 0];
+		groundArray[1] = [groundArray[0][2], groundArray[0][1], width, 250, 1]
+		//groundArray[1] = [width, 300];
+	}
+	
+	function draw(){
+		background(0);
+		noStroke();
+		
+		gravity();
+		player();
+		ground();
+	} 
+	
+	function player(){
+		if(keyIsDown(65)&& playerX > 0){
+			image(motoLeft, playerX, playerY, playerWidth1, playerHeight);
+			playerX -= playerSpeed;
+		}else if(keyIsDown(68)&& playerX < width - playerWidth2){
+			image(motoRight, playerX, playerY, playerWidth1, playerHeight);
+			playerX += playerSpeed;
+		}else{
+			if(underwater){
+				image(motoWater, playerX, playerY, playerWidth1, playerHeight);
+			}else{
+				image(motoFront, playerX, playerY, playerWidth2, playerHeight);
+			}
+		}
+		if(keyIsDown(32)){
+			jumpForce = -jumpHeight; 
+		}
+	}
+	
+	function ground(){
+		for(let i = 0; i < groundArray.length; i++){
+			if(groundArray[i][4] == 0){
+				fill("green");
+			}else if(groundArray[i][4] == 1){
+				fill("gray")
+				rect(groundArray[i][0], height - 50, groundArray[i][2], 50);
+				fill(0, 255, 255, 200);
+			}
+			rect(groundArray[i][0], groundArray[i][1], groundArray[i][2], groundArray[i][3]);
+		}
+	}
+	
+	function gravity(){
+		for(let i = 0; i < groundArray.length; i++){
+			if(playerX > groundArray[i][0]&& playerX < groundArray[i][2]){
+				if(groundArray[i][4] == 1){
+					if(playerY + playerHeight < height - 50){
+						newgrav += gravitation;
+					}
+					acceleration = jumpForce + newgrav;
+					playerY += acceleration;
+					if(playerY + playerHeight > height - 50){
+						playerY =  height - 50 - playerHeight;
+						newgrav = 0;
+						jumpForce = 0;
+					}
+					underwater = true;
+				}else if(groundArray[i][4] == 0){
+					if(playerY + playerHeight < groundArray[i][1]){
+						newgrav += gravitation;
+					}
+					acceleration = jumpForce + newgrav;
+					playerY += acceleration;
+					if(playerY + playerHeight > groundArray[i][1]){
+						playerY = ground1Y - playerHeight;
+						newgrav = 0;
+						jumpForce = 0;
+					}
+					underwater = false;
+				}
+			}
+		
+		}
+		
+	}
+</script>
+</html>
