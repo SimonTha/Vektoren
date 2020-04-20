@@ -1,7 +1,7 @@
 {
-"companyName": "DefaultCompany",
-"productName": "Joemamamamamamamama",
-"productVersion": "0.1",
+"companyName": "SStudioGames",
+"productName": "Hitchcock 4: Suech Simulator",
+"productVersion": "0.9",
 "dataUrl": "Hitchcock4_SuechSimulator.data.unityweb",
 "wasmCodeUrl": "Hitchcock4_SuechSimulator.wasm.code.unityweb",
 "wasmFrameworkUrl": "Hitchcock4_SuechSimulator.wasm.framework.unityweb",
