@@ -1,18 +1,20 @@
 <!Doctype html>
 <html>
 <script src='https://cdn.jsdelivr.net/npm/p5'></script>
+<script src = "https://vektoren.netlify.com/HöhensatzDash/libraries/p5.sound.js"></script>
 <script>
-	let motoLeft, motoRight, motoFront, motoWater;
+	let motoLeft, motoRight, motoFront, motoWater, motoSong;
 	let playerX, playerY, playerSpeed, playerHeight, playerWidth
 	let ground1X, ground2X, ground1Y, ground2Y, groundArray = [];
 	let jumpForce, jumpHeight, newgrav, gravitation, acceleration;
 	let underwater = false;
 	
 	function preload(){
+		motoSong = loadSong("rsc/sounds/MotoMotoSong.mp3");
 		motoLeft = loadImage("rsc/images/MotoMotoLeft.png");
 		motoRight = loadImage("rsc/images/MotoMotoRight.png");
 		motoFront = loadImage("rsc/images/MotoMotoFront.png");
-		motoWater = loadImage("rsc/images/MotoMotoUnderwater.png")
+		motoWater = loadImage("rsc/images/MotoMotoUnderwater.png");
 	}
 	
 	function setup(){
