@@ -35,7 +35,7 @@
 				translate(-(width/2), -(height/2));
 				rotation -= 0.1;
 				textSize(20);
-				text((-((rotation - rotation % PI)/PI)/2), 50, 50);
+				text(round((-((rotation - rotation % PI)/PI)/2)), 50, 50);
 			}
 			
 			function mouseClicked(){
