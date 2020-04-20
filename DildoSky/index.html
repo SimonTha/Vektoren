@@ -21,7 +21,10 @@
 			}
 			
 			function draw(){
-				canvas.mouseOver(function gay(){backgroundSong.play()});
+				//canvas.mouseOver(function gay(){backgroundSong.play()});
+				if(keyIsPressed){
+					backgroundSong.play();
+				}
 				if(!backgroundSong.isPlaying()){
 					backgroundSong.play();
 				}
@@ -32,6 +35,10 @@
 				rotate(-rotation);
 				translate(-(width/2), -(height/2));
 				rotation -= 0.1;
+			}
+			
+			function mouseClicked(){
+				backgroundSong.play();
 			}
 		</script>
 	</head>
