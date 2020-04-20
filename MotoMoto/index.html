@@ -3,7 +3,7 @@
 <script src='https://cdn.jsdelivr.net/npm/p5'></script>
 <script>
 	let motoLeft, motoRight, motoFront, motoWater;
-	let playerX, playerY, playerSpeed, playerHeight, playerWidth1, playerWidth2;
+	let playerX, playerY, playerSpeed, playerHeight, playerWidth
 	let ground1X, ground2X, ground1Y, ground2Y, groundArray = [];
 	let jumpForce, jumpHeight, newgrav, gravitation, acceleration;
 	let underwater = false;
@@ -21,10 +21,9 @@
 		
 		playerX = 100;
 		playerY = 200;
-		playerSpeed = 5;
+		playerSpeed = 10;
 		playerHeight = 200;
-		playerWidth1 = 100;
-		playerWidth2 = 150;
+		playerWidth = 150;
 		
 		ground1X = 0;
 		ground2X = width;
@@ -38,7 +37,6 @@
 		jumpHeight = 20;
 		groundArray[0] = [0, height-300, width - 300, 300, 0];
 		groundArray[1] = [groundArray[0][2], groundArray[0][1], width, 250, 1]
-		//groundArray[1] = [width, 300];
 	}
 	
 	function draw(){
@@ -52,16 +50,16 @@
 	
 	function player(){
 		if(keyIsDown(65)&& playerX > 0){
-			image(motoLeft, playerX, playerY, playerWidth1, playerHeight);
+			image(motoLeft, playerX, playerY, playerWidth, playerHeight);
 			playerX -= playerSpeed;
-		}else if(keyIsDown(68)&& playerX < width - playerWidth2){
-			image(motoRight, playerX, playerY, playerWidth1, playerHeight);
+		}else if(keyIsDown(68)&& playerX < width - playerWidth){
+			image(motoRight, playerX, playerY, playerWidth, playerHeight);
 			playerX += playerSpeed;
 		}else{
 			if(underwater){
-				image(motoWater, playerX, playerY, playerWidth1, playerHeight);
+				image(motoWater, playerX, playerY, playerWidth, playerHeight);
 			}else{
-				image(motoFront, playerX, playerY, playerWidth2, playerHeight);
+				image(motoFront, playerX, playerY, playerWidth, playerHeight);
 			}
 		}
 		if(keyIsDown(32)){
