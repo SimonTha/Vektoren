@@ -23,8 +23,6 @@
 			function draw(){
 				//canvas.mouseOver(function gay(){backgroundSong.play()});
 				if(keyIsPressed){
-					backgroundSong.play();
-				}
 				if(!backgroundSong.isPlaying()){
 					backgroundSong.play();
 				}
@@ -38,7 +36,9 @@
 			}
 			
 			function mouseClicked(){
+				if(!backgroundSong.isPlay()){
 				backgroundSong.play();
+				}
 			}
 		</script>
 	</head>
