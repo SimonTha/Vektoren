@@ -23,9 +23,7 @@
 			function draw(){
 				//canvas.mouseOver(function gay(){backgroundSong.play()});
 				if(keyIsPressed){
-				if(!backgroundSong.isPlaying()){
 					backgroundSong.play();
-				}
 				}
 				image(backgroundSky, 0, 0, windowWidth, windowHeight);
 				translate(width/2 , height/2);
@@ -39,9 +37,7 @@
 			}
 			
 			function mouseClicked(){
-				if(!backgroundSong.isPlaying()){
 				backgroundSong.play();
-				}
 			}
 		</script>
 	</head>
