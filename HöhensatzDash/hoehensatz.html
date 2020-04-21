@@ -548,6 +548,7 @@ function collision() {
 		}
 	}
 	if(checkOrbs[0]){
+		insideOrb = false;
 		for(v = 0; v < checkOrbs.length; v++){
 			if(insideOrb == false){
 				if (checkBox(checkOrbs[v].x, checkOrbs[v].y, 25, 25)) {
@@ -569,6 +570,7 @@ function collision() {
 		}
 	}
 	if(checkGravityOrbs[0]){
+		insideGravityOrb = false;
 		for(n = 0; n < checkGravityOrbs.length; n++){
 			if(insideGravityOrb == false){
 				if (checkBox(checkGravityOrbs[n].x, checkGravityOrbs[n].y, 25, 25)) {
