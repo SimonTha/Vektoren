@@ -8,6 +8,10 @@
 			let dildo;
 			let rotation = 0;
 			let backgroundSong;
+			let money = 0;
+			let isTurning = false;
+			let shopIsOpen = false;
+			let rotationSpeed = 3;
 			
 			function preload(){
 				backgroundSky = loadImage("rsc/images/backgroundSky.jpg");
@@ -18,26 +22,82 @@
 			function setup(){
 				let canvas = createCanvas(windowWidth, windowHeight);
 				canvas.position(0, 0);
+				angleMode(DEGREES);
 			}
 			
 			function draw(){
+			
 				//canvas.mouseOver(function gay(){backgroundSong.play()});
+				if(isTurning){
+					rotation += rotationSpeed;
+				}
+				if(rotation >= 360 && isTurning){
+					rotation = 0;
+					isTurning  = false;
+					money++;
+				}
 				if(keyIsPressed){
-					backgroundSong.play();
+					if(!backgroundSong.isPlaying()){
+						backgroundSong.play();
+					}
 				}
 				image(backgroundSky, 0, 0, windowWidth, windowHeight);
 				translate(width/2 , height/2);
-				rotate(rotation);
-				image(dildo, -205, -298, 510, 586);
 				rotate(-rotation);
-				translate(-(width/2), -(height/2));
-				rotation -= 0.1;
-				textSize(20);
-				text(round((-((rotation - rotation % PI)/PI)/2)), 50, 50);
+				image(dildo, -205, -298, 510, 586);
+				rotate(rotation);
+				translate(-(width/2), -(height / 2));
+				fill(0)
+				textSize(50);
+				text(money, 50, 50);
+				
+				shop();
 			}
 			
 			function mouseClicked(){
-				backgroundSong.play();
+				if(!backgroundSong.isPlaying()){
+					backgroundSong.play();
+				}
+				
+				if(mouseX < width - 20&& mouseX > width - 100 && mouseY > 20&& mouseY < 50 && !shopIsOpen){
+					shopIsOpen = true;
+				}
+				
+				if(!isTurning && !shopIsOpen){
+					isTurning = true;
+				}
+				
+				if(mouseX < width - 70&& mouseX > width - 150 && mouseY > 70&& mouseY < 100 && shopIsOpen){
+					shopIsOpen = false;
+				}
+				
+				if(mouseX < 340&& mouseX > 70 && mouseY > 70&& mouseY < 110 && shopIsOpen&& money >= 5){
+					rotationSpeed++;
+					money -= 5;
+				}
+			}
+			
+			function shop(){
+				if(!shopIsOpen){
+					fill("grey");
+					rect(width - 100, 20, 80, 30)
+					textSize(30);
+					fill("black")
+					text("Shop", width - 95, 45);
+				}else{
+					fill(20, 20, 20, 160);
+					rect(50, 50, width - 100, width - 100);
+					fill("grey");
+					rect(width - 150, 70, 80, 30)
+					fill(0);
+					textSize(30);
+					text("Close", width - 149, 95)
+					fill("yellow");
+					rect(70, 70, 270, 40);
+					fill(0);
+					textSize(30);
+					text("Buy speed Upgrade", 70, 100);
+				}
 			}
 		</script>
 	</head>
