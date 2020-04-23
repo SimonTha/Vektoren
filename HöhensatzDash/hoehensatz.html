@@ -25,7 +25,7 @@
             }
         </style>
     </head>
-    <body style="background-image: url('rsc/images/yes.png');">
+    <body style="background-image: url('rsc/images/2Brain.png');">
 	<a href = "http://vektoren.netlify.com">back</a>
     <div id="p5_loading" class = "loadingImage">
         <img src = "rsc/images/load.gif">
@@ -33,7 +33,7 @@
 <script src="https://cdn.jsdelivr.net/npm/p5"></script>
 <script src="libraries/p5.sound.js"></script>
 <script>
-var kathetenSatz, flagge, flaggeImg, img, KienerImg, Kiener, DeviousDev, DeviousDead, DeviousFat, dev1, dev2, dev3, foreskin, grass, moto, moveIcon, trashCan;
+var kathetenSatz, flagge, flaggeImg, img, KienerImg, Kiener, DeviousDev, DeviousDead, DeviousFat, dev1, dev2, dev3, foreskin, grass, moto, moveIcon, trashCan, BrainCells;
 
 let points;
 let highScore;
@@ -98,6 +98,8 @@ function preload(){
 	moto = loadImage("rsc/images/Moto.png");
 	moveIcon = loadImage("rsc/images/move-icon.png");
 	trashCan = loadImage("rsc/images/trashcan.png");
+	BrainCells = loadImage("rsc/images/2BrainCells.png");
+	BrainGround = loadImage("rsc/images/2Brain.png");
 	
 	obstacles = loadStrings("rsc/txt/obstacles.txt")
 	level1 = loadStrings("rsc/txt/level1.txt")
@@ -378,8 +380,9 @@ function collObject() {
 			if(kienerGame){
 				image(Kiener, orbs[i].x, orbs[i].y, 25, 25);
 			}else{
-				fill("red");
-				rect(orbs[i].x, orbs[i].y, 25, 25);
+				/*fill("red");
+				rect(orbs[i].x, orbs[i].y, 25, 25);*/
+				image(BrainCells, orbs[i].x, orbs[i].y, 25, 25);
 			}
 		}
 	}
@@ -481,7 +484,7 @@ function varReset(editorReset) {
 
 function createNewObstacle() {
 	let type = floor(random(0, obstacles.length));
-	let rand = random(230, 400);
+	let rand = random(210, 400);
 	
 	splitEndless = split(obstacles[type], ",");
 	    
@@ -548,7 +551,6 @@ function collision() {
 		}
 	}
 	if(checkOrbs[0]){
-		insideOrb = false;
 		for(v = 0; v < checkOrbs.length; v++){
 			if(insideOrb == false){
 				if (checkBox(checkOrbs[v].x, checkOrbs[v].y, 25, 25)) {
@@ -570,7 +572,6 @@ function collision() {
 		}
 	}
 	if(checkGravityOrbs[0]){
-		insideGravityOrb = false;
 		for(n = 0; n < checkGravityOrbs.length; n++){
 			if(insideGravityOrb == false){
 				if (checkBox(checkGravityOrbs[n].x, checkGravityOrbs[n].y, 25, 25)) {
