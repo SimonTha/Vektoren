@@ -378,7 +378,7 @@ function collObject() {
 			orbs[i].x = orbs[i].x - triangleSpeed;
 			
 			if(kienerGame){
-				image(Kiener, orbs[i].x, orbs[i].y, 25, 25);
+				image(BrainCells, orbs[i].x, orbs[i].y, 25, 25);
 			}else{
 				/*fill("red");
 				rect(orbs[i].x, orbs[i].y, 25, 25);*/
@@ -897,7 +897,7 @@ function toolbar() {
 	fill("yellow")
 	triangle(10, 490, 25, 460, 40,490);
 	if(kienerGame){
-	    image(Kiener, 55, 460, 30, 30)
+	    image(BrainCells, 55, 460, 30, 30)
 	}else{
 	    fill("red")
 	    strokeWeight(0);
@@ -1333,7 +1333,7 @@ function drawEditorObjects(){
 				translate(-xPos + -25, -yPos + -25);
 			}else if(selector == 4){
 			    if(kienerGame){
-				    image(Kiener, xPos + 12.5, yPos + 12.5, 25, 25)
+				    image(BrainCells, xPos + 12.5, yPos + 12.5, 25, 25)
 			    }else{
 			        fill(255, 0, 0, 120);
 				    rect(xPos + 12.5, yPos + 12.5, 25, 25);
@@ -1359,7 +1359,7 @@ function drawEditorObjects(){
 					translate(-editorObjects[i][0] + -25, -editorObjects[i][1] + -25);
 				}else if(editorObjects[i][3] == 2){
 					if(kienerGame){
-    				    image(Kiener, editorObjects[i][0] + 12.5, editorObjects[i][1] + 12.5, 25, 25)
+    				    image(BrainCells, editorObjects[i][0] + 12.5, editorObjects[i][1] + 12.5, 25, 25)
     			    }else{
     			        fill(255, 0, 0, 120);
     				    rect(editorObjects[i][0] + 12.5, editorObjects[i][1] + 12.5, 25, 25);
@@ -1381,7 +1381,7 @@ function drawEditorObjects(){
 					translate(-editorObjects[i][0] + -50 / 2 + editorSlider.value(), -editorObjects[i][1] + -50 / 2);
 				}else if(editorObjects[i][3] == 2){
 					if(kienerGame){
-    				    image(Kiener, editorObjects[i][0] + 12.5 - editorSlider.value(), editorObjects[i][1] + 12.5, 25, 25)
+    				    image(BrainCells, editorObjects[i][0] + 12.5 - editorSlider.value(), editorObjects[i][1] + 12.5, 25, 25)
     			    }else{
     			        fill(255, 0, 0);
     				    rect(editorObjects[i][0] + 12.5 - editorSlider.value(), editorObjects[i][1] + 12.5, 25, 25);
