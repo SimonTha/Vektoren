@@ -1073,26 +1073,11 @@ function keyListenerOthers(){
             inderPic = false;
         }else if(!inderPic){
             var list = document.getElementsByTagName("HTML")[0];
-                list.getElementsByTagName("BODY")[0].style = "background-image: url('rsc/images/yes.png');";
+                list.getElementsByTagName("BODY")[0].style = "background-image: url('rsc/images/2Brain.png');";
             inderPic = true
         }
     }
-	if(keyCode===90){
-		kienerGame = !kienerGame;
-		if(kienerGame){
-			img = loadImage("rsc/images/hoehensatz.jpg");
-			dev1 = loadImage("rsc/images/Dev.jpg");
-			dev2 = loadImage("rsc/images/RejectedDev.jpg");
-			dev3 = loadImage("rsc/images/UnbelievableDev.png");
-			grass = loadImage("rsc/images/Weed.png");
-		}else{
-			img = loadImage("rsc/images/player.jpg");
-			dev1 = loadImage("rsc/images/bg.png");
-			dev2 = loadImage("rsc/images/bg.png");
-			dev3 = loadImage("rsc/images/bg.png");
-			grass = loadImage("rsc/images/ground.png");
-		}
-	}
+	
 }
 
 function clickListener0(){}
