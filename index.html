@@ -545,6 +545,7 @@ function collision() {
 	}
 	checkObjects.splice(0);
 	
+	insideOrb = false;
 	var checkOrbs = [];
 	for(c = 0; c < orbs.length; c++){
 		if(orbs[c].x < x + 39){
@@ -566,6 +567,7 @@ function collision() {
 	}
 	checkOrbs.splice(0);
 	
+	insideGravityOrb = false;
 	var checkGravityOrbs = [];
 	for(b = 0; b < gravityOrbs.length; b++){
 		if(gravityOrbs[b].x < x + 39){
