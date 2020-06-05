@@ -103,7 +103,7 @@ let username;
 function preload() {
 
   mkca = loadSound("rsc/sounds/mkca.mp3");
-  img = loadImage("rsc/images/player.jpg");
+  img = loadImage("rsc/images/player.png");
   flaggeImg = loadImage("rsc/images/Kommunismus.jpg");
   dev1 = loadImage("rsc/images/bg.png");
   dev2 = loadImage("rsc/images/bg.png");
