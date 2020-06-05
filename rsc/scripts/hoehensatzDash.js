@@ -103,7 +103,7 @@ let username;
 function preload() {
 
   mkca = loadSound("rsc/sounds/mkca.mp3");
-  img = loadImage("rsc/images/player.jpg");
+  img = loadImage("rsc/images/player.png");
   flaggeImg = loadImage("rsc/images/Kommunismus.jpg");
   dev1 = loadImage("rsc/images/bg.png");
   dev2 = loadImage("rsc/images/bg.png");
@@ -893,7 +893,6 @@ function death(level, deathcause) {
   } else {
     gameActive = 1;
   }
-  console.log(deathcause)
 }
 
 function orbJump(force) {
@@ -1254,7 +1253,6 @@ function keyListener5() {
     }
     if(editorLoadScreen){
       if(keyCode == 72){
-        console.log("yees");
         window.open("rsc/docs/editor_guide.pdf");
       }
     }
@@ -1609,7 +1607,6 @@ function clickListener5() {
         saveNameFill = false
       }
     } else if (!output && uploadLevel) {
-      console.log("click")
       if (button(width / 2 - width / 10, height - height / 7, width / 5, height / 10) && nameInp.value() != "" && userInp.value() != "" && nameInp.value().length <= 25 && userInp.value().length <= 25) {
         let poopenfarten = "";
         newLevelList = poopenfarten //if (nameInp.value() != "") {
@@ -1625,7 +1622,6 @@ function clickListener5() {
         levelData[2] = newgaylevel.toString();
         levelData[3] = "<?php header('Access-Control-Allow-Origin: *');echo readfile('" + levelId + ".txt'); ?>";
         levelData[4] = levelId + ".php"
-        console.log(levelData)
         $.ajax({
           type: 'POST',
           url: "https://vamos.alwaysdata.net/HoehensatzDash/writeLevelList.php",
@@ -1640,7 +1636,6 @@ function clickListener5() {
         userInp.remove();
         createEditorSlider();
 
-        console.log("why you gay bro")
         //newLevelListLoad = fals;
       } else if (button(width / 150, height / 100, width / 8, height / 13)) {
         uploadLevel = false;
@@ -1980,7 +1975,7 @@ function drawEditorObjects() {
         $.get("https://vamos.alwaysdata.net/HoehensatzDash/levelList.php", function(data) {
           getLevelList = split(data, ",");
           getLevelList.splice(-1, 1);
-          console.log(getLevelList)
+
 
           newLevelListLoad = false;
         });
@@ -2095,7 +2090,7 @@ function pause() {
 function loadEditorLevel(levelKey, loadedId, loadedName) {
   if (levelKey == "") {
     levelKey = "0";
-    console.log("leer");
+
   }
   ownLevelName = loadedName;
   ownLoadedId = loadedId;
@@ -2128,7 +2123,7 @@ function createKey() {
       }
     }
   }
-  console.log(levelSeed);
+
   //inp = createInput(levelSeed);
 }
 
@@ -2151,7 +2146,7 @@ function drawBack(color) {
 
 function mouseWheel(event) {
   if(gameActive === 5&&output){
-    console.log(event);
+
     let gaydilidus = editorSlider.value() - objectSize * (event.delta / 100)
     editorSlider.value(gaydilidus);
   }
