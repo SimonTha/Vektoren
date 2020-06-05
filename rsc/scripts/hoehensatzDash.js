@@ -103,7 +103,6 @@ let username;
 function preload() {
 
   mkca = loadSound("rsc/sounds/mkca.mp3");
-  Kiener = loadImage("rsc/images/Kiener.png");
   img = loadImage("rsc/images/player.jpg");
   flaggeImg = loadImage("rsc/images/Kommunismus.jpg");
   dev1 = loadImage("rsc/images/bg.png");
@@ -1301,6 +1300,7 @@ function keyListenerOthers() {
       dev2 = loadImage("rsc/images/RejectedDev.jpg");
       dev3 = loadImage("rsc/images/UnbelievableDev.png");
       grass = loadImage("rsc/images/Weed.png");
+      Kiener = loadImage("rsc/images/Kiener.png");
     } else {
       img = loadImage("rsc/images/player.jpg");
       dev1 = loadImage("rsc/images/bg.png");
