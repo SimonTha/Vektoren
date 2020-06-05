@@ -565,7 +565,7 @@ function collObject() {
 }
 
 function varReset(editorReset) {
-  playerSize = height / 12.0000000000001;
+  playerSize = height / 12.000000000000001;
   objectSize = height / 12;
 
   yx = width;
