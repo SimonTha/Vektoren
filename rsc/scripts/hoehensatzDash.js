@@ -1,6 +1,6 @@
 //<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-var kathetenSatz, flagge, flaggeImg, img, KienerImg, Kiener, DeviousDev, DeviousDead, DeviousFat, dev1, dev2, dev3, foreskin, grass, moto, moveIcon, trashCan, BrainCells, menuBg, levelsBg, onlineBg, makerBg;
-let heftigergay = false;
+var kathetenSatz, flagge, flaggeImg, img, dev1, dev2, dev3, foreskin, grass, moto, moveIcon, trashCan, BrainCells, menuBg, levelsBg, onlineBg, makerBg;
+let heftig = false;
 let points;
 let globalHighScore;
 let globalNewHighscore;
@@ -54,7 +54,7 @@ let triangleY = 0;
 let toolbarBoxSize,
   toolbarBoxes = 4;
 let numberObjects;
-let whu, oof, mkca, waschmachine, song = 0;
+let whu, oof, waschmachine, song = 0;
 let musicSlider, soundSlider;
 let lastGameActive;
 let cnv, cnvX, cnvY;
@@ -62,7 +62,6 @@ let inderPic = false,
   deleteWebHost = true;
 let gameActiveToLoad;
 let splitEndless, obstacles;
-let kienerGame = false;
 let mapEditorInput, editorSlider, editorLastObject = 0,
   editorLoadScreen = false,
   testLevel = false,
@@ -102,23 +101,19 @@ let username;
 
 function preload() {
 
-  mkca = loadSound("rsc/sounds/mkca.mp3");
   img = loadImage("rsc/images/player.png");
   flaggeImg = loadImage("rsc/images/Kommunismus.jpg");
-  dev1 = loadImage("rsc/images/bg.png");
-  dev2 = loadImage("rsc/images/bg.png");
-  dev3 = loadImage("rsc/images/bg.png");
   grass = loadImage("rsc/images/ground.png");
   moto = loadImage("rsc/images/Moto.png");
   moveIcon = loadImage("rsc/images/move-icon.png");
   trashCan = loadImage("rsc/images/trashcan.png");
-  BrainCells = loadImage("rsc/images/2BrainCells.png");
-  BrainGround = loadImage("rsc/images/2Brain.png");
   menuBg = loadImage("rsc/images/menu.png");
   onlineBg = loadImage("rsc/images/online.png");
   levelsBg = loadImage("rsc/images/levels.png");
   makerBg = loadImage("rsc/images/maker.png");
-
+  dev1 = loadImage("rsc/images/bg.png");
+  dev2 = loadImage("rsc/images/bg.png");
+  dev3 = loadImage("rsc/images/bg.png");
   obstacles = loadStrings("rsc/txt/obstacles.txt")
   level1 = loadStrings("rsc/txt/level1.txt")
   level2 = loadStrings("rsc/txt/level2.txt")
@@ -154,7 +149,6 @@ function setup() {
   oof = loadSound("rsc/sounds/Oof.mp3");
   musicSound = 0.01;
   soundSound = 0.1;
-  mkca.setVolume(0.01)
 
   $.get("https://vamos.alwaysdata.net/HoehensatzDash/occupied.php", function(data) {
     globalHighScore = (data - (data % 10)) / 10;
@@ -170,9 +164,6 @@ function draw() {
       varReset(0);
       gameActive = 2;
       varReseted = true;
-    }
-    if (!mkca.isPlaying()) {
-      mkca.play();
     }
     if (gameActive === 0) {
       strokeWeight(height / 250);
@@ -291,7 +282,6 @@ function draw() {
 
       musicSound = musicSlider.value();
       soundSound = soundSlider.value();
-      mkca.setVolume(musicSound);
       textSize(height / 12);
       text("Music", width / 6 + width / 10, height / 2);
       text("Sounds", width - width / 6 - width / 10, height / 2);
@@ -340,7 +330,7 @@ function draw() {
     } else if (gameActive === 9) {
       strokeWeight(height / 166)
       image(onlineBg, 0, 0, width, height);
-      if (heftigergay) {
+      if (heftig) {
         //customLevel = lev[0];
         splitLevel = split(customLevel, ",");
         splitLevel.splice(-1, 1)
@@ -534,13 +524,10 @@ function collObject() {
     for (let i = 0; i < orbs.length; i++) {
       orbs[i].x = orbs[i].x - triangleSpeed;
 
-      if (kienerGame) {
-        image(Kiener, orbs[i].x, orbs[i].y, objectSize / 2, objectSize / 2);
-      } else {
+     
         fill("red");
         rect(orbs[i].x, orbs[i].y, objectSize / 2, objectSize / 2, height / 20);
         //image(BrainCells, orbs[i].x, orbs[i].y, objectSize / 2, objectSize / 2);
-      }
     }
   }
 
@@ -928,11 +915,10 @@ function Background(what, backgroundMoving, foreskinMoving) {
     image(dev2, backX2, 0, height - (height - yy), height - (height - yy));
     image(dev3, backX3, 0, height - (height - yy), height - (height - yy));
     image(dev2, backX4, 0, height - (height - yy), height - (height - yy));
-    if (!kienerGame) {
       stroke(255)
       fill(0, 26, 255, 100);
       rect(0, 0, width, yy);
-    }
+  
   }
   if (what == 2 || what == 3) {
     if (backX1 + height - (height - yy) < 0) {
@@ -955,19 +941,12 @@ function Background(what, backgroundMoving, foreskinMoving) {
       }
       image(grass, foregroundX[p], yy, height - yy + 10, height - yy)
     }
-    if (!kienerGame) {
       fill(0, 0, 255, 150);
       rect(0, yy, width, height - yy)
-    }
+    
   }
 
-  /*if (!kienerGame) {
-    stroke(255)
-    fill(0, 26, 255, 100);
-    rect(0, 0, width, yy);
-    fill(0, 0, 255, 150);
-    rect(0, yy, width, height - yy)
-  }*/
+
 }
 
 
@@ -1113,13 +1092,10 @@ function toolbar() {
   image(trashCan, width - height / 15.6 - height / 100 - toolbarBoxSize, height - height / 15.6, toolbarBoxSize - toolbarBoxSize / 4, toolbarBoxSize - toolbarBoxSize / 4)
   fill("yellow")
   triangle(height / 100 * 2, height - height / 12 + toolbarBoxSize, height / 100 + toolbarBoxSize / 2, height - height / 12 + height / 100 * 2, toolbarBoxSize, height - height / 12 + toolbarBoxSize);
-  if (kienerGame) {
-    image(Kiener, height / 100 + toolbarBoxSize + height / 46, height - height / 12 + height / 46, toolbarBoxSize - toolbarBoxSize / 2.6666, toolbarBoxSize - toolbarBoxSize / 2.6666)
-  } else {
+
     fill("red")
     strokeWeight(0);
     rect(height / 100 + toolbarBoxSize + height / 46, height - height / 12 + height / 46, toolbarBoxSize - toolbarBoxSize / 2.6666, toolbarBoxSize - toolbarBoxSize / 2.6666, height / 20)
-  }
   fill("black");
   stroke("white")
   rect(height / 100 * 2 + 2 * toolbarBoxSize + height / 56, height - height / 12 + height / 56, toolbarBoxSize - toolbarBoxSize / 4, toolbarBoxSize - toolbarBoxSize / 4)
@@ -1290,23 +1266,6 @@ function keyListenerOthers() {
       inderPic = true
     }
   }
-  if (keyCode === 90 && getURL() != "https://vektoren.netlify.app/") {
-    kienerGame = !kienerGame;
-    if (kienerGame) {
-      img = loadImage("rsc/images/hoehensatz.jpg");
-      dev1 = loadImage("rsc/images/Dev.jpg");
-      dev2 = loadImage("rsc/images/RejectedDev.jpg");
-      dev3 = loadImage("rsc/images/UnbelievableDev.png");
-      grass = loadImage("rsc/images/Weed.png");
-      Kiener = loadImage("rsc/images/Kiener.png");
-    } else {
-      img = loadImage("rsc/images/player.jpg");
-      dev1 = loadImage("rsc/images/bg.png");
-      dev2 = loadImage("rsc/images/bg.png");
-      dev3 = loadImage("rsc/images/bg.png");
-      grass = loadImage("rsc/images/ground.png");
-    }
-  }
 }
 
 function clickListener0() {}
@@ -1355,7 +1314,7 @@ function clickListener2() {
       seedInput.size(width / 3, height / 20)*/
       gameActive = 9;
       currentPage = 0;
-      heftigergay = false
+      heftig = false
       globalLevelListLoad = true
       currentPage = 0;
       transition = true;
@@ -1578,14 +1537,14 @@ function clickListener5() {
             localStorage.setItem("ownerLevels", oldStorage + saveNameInp.value() + "," + randomLevelId + ",");
           } else {
             randomLevelId = ownLoadedId
-            let gayporn = split(oldStorage, ",");
+            let storageDat = split(oldStorage, ",");
             oldStorage = "";
-            gayporn.splice(-1, 1);
-            for (let i = 0; i < gayporn.length; i += 2) {
-              if (gayporn[i + 1] == randomLevelId) {
-                gayporn[i] = saveNameInp.value();
+            storageDat.splice(-1, 1);
+            for (let i = 0; i < storageDat.length; i += 2) {
+              if (storageDat[i + 1] == randomLevelId) {
+                storageDat[i] = saveNameInp.value();
               }
-              oldStorage = oldStorage + gayporn[i] + "," + gayporn[i + 1] + ",";
+              oldStorage = oldStorage + storageDat[i] + "," + storageDat[i + 1] + ",";
             }
             let oldBobsStorage = oldStorage
             localStorage.setItem("ownerLevels", oldBobsStorage);
@@ -1608,18 +1567,17 @@ function clickListener5() {
       }
     } else if (!output && uploadLevel) {
       if (button(width / 2 - width / 10, height - height / 7, width / 5, height / 10) && nameInp.value() != "" && userInp.value() != "" && nameInp.value().length <= 25 && userInp.value().length <= 25) {
-        let poopenfarten = "";
-        newLevelList = poopenfarten //if (nameInp.value() != "") {
+        newLevelList = "" //if (nameInp.value() != "") {
         for (let i = 0; i < getLevelList.length; i++) {
           newLevelList = newLevelList + getLevelList[i] + ",";
           //console.log(newLevelList);
         }
-        let newgaylevel = levelSeed + ",";
+        let newlevel = levelSeed + ",";
         let levelId = floor(random(0, 1000000000000));
         newLevelList = newLevelList + nameInp.value() + "," + userInp.value() + "," + levelId + ",";
         levelData[0] = newLevelList;
         levelData[1] = levelId + ".txt";
-        levelData[2] = newgaylevel.toString();
+        levelData[2] = newlevel.toString();
         levelData[3] = "<?php header('Access-Control-Allow-Origin: *');echo readfile('" + levelId + ".txt'); ?>";
         levelData[4] = levelId + ".php"
         $.ajax({
@@ -1714,7 +1672,7 @@ function clickListener9() {
         if (button(width / 10, height / 4 + height / 15 * i + height / 12 * i, width / 3, height / 8)) {
           $.get("https://vamos.alwaysdata.net/HoehensatzDash/" + onlineLevels[currentPage * 8 + i][1] + ".php", function(data) {
             customLevel = data;
-            heftigergay = true
+            heftig = true
           });
         }
       }
@@ -1723,7 +1681,7 @@ function clickListener9() {
           if (button(width - width / 10 - width / 3, height / 4 + height / 15 * i + 4 + height / 12 * i, width / 3, height / 8)) {
             $.get("https://vamos.alwaysdata.net/HoehensatzDash/" + onlineLevels[currentPage * 8 + i + 4][1] + ".php", function(data) {
               customLevel = data;
-              heftigergay = true
+              heftig = true
             });
           }
         }
@@ -1758,12 +1716,10 @@ function drawEditorObjects() {
         rotate(-editorRotate * PI / 2);
         translate(-xPos + -objectSize / 2, -yPos + -objectSize / 2);
       } else if (selector == 4) {
-        if (kienerGame) {
-          image(Kiener, xPos + objectSize / 4, yPos + objectSize / 4, objectSize / 2, objectSize / 2)
-        } else {
+       
           fill(255, 0, 0, 120);
           rect(xPos + objectSize / 4, yPos + objectSize / 4, objectSize / 2, objectSize / 2, height / 20);
-        }
+        
       } else if (selector == 5) {
         fill(0, 0, 0, 120)
         rect(xPos, yPos, objectSize, objectSize)
@@ -1784,12 +1740,9 @@ function drawEditorObjects() {
           rotate(-editorRotate * PI / 2);
           translate(-editorObjects[i][0] + -objectSize / 2, -editorObjects[i][1] + -objectSize / 2);
         } else if (editorObjects[i][3] == 2) {
-          if (kienerGame) {
-            image(Kiener, editorObjects[i][0] + objectSize / 4, editorObjects[i][1] + objectSize / 4, objectSize / 2, objectSize / 2)
-          } else {
             fill(255, 0, 0, 120);
             rect(editorObjects[i][0] + objectSize / 4, editorObjects[i][1] + objectSize / 4, objectSize / 2, objectSize / 2, height / 20);
-          }
+          
         } else if (editorObjects[i][3] == 3) {
           fill(0, 0, 0, 120)
           rect(editorObjects[i][0], editorObjects[i][1], objectSize, objectSize)
@@ -1806,12 +1759,10 @@ function drawEditorObjects() {
           rotate(-editorObjects[i][4] * PI / 2);
           translate(-editorObjects[i][0] * objectSize + -objectSize / 2 + editorSlider.value(), -(yy - editorObjects[i][1] * objectSize) + -objectSize / 2);
         } else if (editorObjects[i][3] == 2) {
-          if (kienerGame) {
-            image(Kiener, editorObjects[i][0] * objectSize + objectSize / 4 - editorSlider.value(), yy - editorObjects[i][1] * objectSize + objectSize / 4, objectSize / 2, objectSize / 2)
-          } else {
+    
             fill(255, 0, 0);
             rect(editorObjects[i][0] * objectSize + objectSize / 4 - editorSlider.value(), yy - editorObjects[i][1] * objectSize + objectSize / 4, objectSize / 2, objectSize / 2, height / 20);
-          }
+      
         } else if (editorObjects[i][3] == 3) {
           fill(0, 0, 0)
           rect(editorObjects[i][0] * objectSize - editorSlider.value(), yy - editorObjects[i][1] * objectSize, objectSize, objectSize)
@@ -2147,7 +2098,6 @@ function drawBack(color) {
 function mouseWheel(event) {
   if(gameActive === 5&&output){
 
-    let gaydilidus = editorSlider.value() - objectSize * (event.delta / 100)
-    editorSlider.value(gaydilidus);
+    editorSlider.value(editorSlider.value() - objectSize * (event.delta / 100));
   }
 }
