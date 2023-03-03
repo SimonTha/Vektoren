@@ -102,7 +102,7 @@ let username;
 function preload() {
 
   img = loadImage("rsc/images/player.png");
-  flaggeImg = loadImage("rsc/images/Kommunismus.jpg");
+  flaggeImg = loadImage("rsc/images/Kommunismuss.jpg");
   grass = loadImage("rsc/images/ground.png");
   moto = loadImage("rsc/images/Moto.png");
   moveIcon = loadImage("rsc/images/move-icon.png");
